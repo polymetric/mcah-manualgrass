@@ -1,6 +1,14 @@
 plugins {
 	id 'fabric-loom' version '0.4-SNAPSHOT'
 	id 'maven-publish'
+	id 'idea'
+}
+
+idea {
+	module {
+		downloadJavadoc = true
+		downloadSources = true
+	}
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
