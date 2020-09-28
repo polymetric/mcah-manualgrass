@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "mcah-manualgrass",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "MCAH ManualGrass",
+  "description": "gives u the power to move grass",
   "authors": [
-    "Me!"
+    "polymetric"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://nodium.net/mcmods/mcah/manualgrass",
+    "sources": "https://github.com/polymetric/mcah-manualgrass"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ManualGrass"
+      "net.nodium.mcmods.mcah_manualgrass.ManualGrass"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "mcah-manualgrass.mixins.json"
   ],
 
   "depends": {

@@ -1,4 +1,4 @@
-package net.fabricmc.example;
+package net.nodium.mcmods.mcah_manualgrass;
 
 import java.util.HashMap;
 import java.util.Iterator;

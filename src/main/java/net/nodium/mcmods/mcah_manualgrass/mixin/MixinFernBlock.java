@@ -1,26 +1,20 @@
-package net.fabricmc.example.mixin;
+package net.nodium.mcmods.mcah_manualgrass.mixin;
 
-import net.fabricmc.example.ManualGrass;
-import net.fabricmc.example.MovableGrass;
-import net.fabricmc.example.Offset;
-import net.fabricmc.example.Position;
+import net.nodium.mcmods.mcah_manualgrass.ManualGrass;
+import net.nodium.mcmods.mcah_manualgrass.MovableGrass;
+import net.nodium.mcmods.mcah_manualgrass.Position;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FernBlock;
 import net.minecraft.block.PlantBlock;
-import net.minecraft.block.TallPlantBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.DebugInfoSender;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-
-import java.util.Arrays;
 
 @Mixin(FernBlock.class)
 public abstract class MixinFernBlock extends PlantBlock implements MovableGrass {

@@ -1,18 +1,13 @@
-package net.fabricmc.example;
+package net.nodium.mcmods.mcah_manualgrass;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.block.FernBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
-import net.minecraft.client.render.chunk.ChunkBuilder;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.WorldChunk;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;

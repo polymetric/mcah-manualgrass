@@ -1,4 +1,4 @@
-package net.fabricmc.example;
+package net.nodium.mcmods.mcah_manualgrass;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

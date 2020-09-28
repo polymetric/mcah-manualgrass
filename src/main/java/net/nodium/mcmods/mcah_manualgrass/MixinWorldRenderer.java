@@ -1,4 +1,4 @@
-package net.fabricmc.example;
+package net.nodium.mcmods.mcah_manualgrass;
 
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.chunk.ChunkBuilder;
