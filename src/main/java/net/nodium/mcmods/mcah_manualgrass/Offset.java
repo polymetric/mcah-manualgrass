@@ -15,7 +15,7 @@ public class Offset {
 
     @Override
     public String toString() {
-        return String.format("%d %d %d", x, y, z);
+        return String.format("%12d %12d %12d", x, y, z);
     }
 
     public Vec3d toVec3d() {
