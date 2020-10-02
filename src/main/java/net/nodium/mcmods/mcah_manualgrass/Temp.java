@@ -1,5 +1,8 @@
 package net.nodium.mcmods.mcah_manualgrass;
 
+import net.nodium.mcmods.mcah_manualgrass.config.ConfigHandler;
+import net.nodium.mcmods.mcah_manualgrass.config.ModConfig;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -7,7 +10,7 @@ import java.util.Map;
 public class Temp {
     private static HashMap<Position, Offset> offsetMap = new HashMap<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Position pos1 = new Position(0, 0, 0);
         Position pos2 = new Position(5, 0, 0);
 
@@ -26,7 +29,12 @@ public class Temp {
 //        System.out.println(calcOffsetPos(0, 64, 1));
 
 //        System.out.println(calcOffsetPos(0, 64, 0).toVec3d());
-        System.out.println(calcOffsetPos(0, 64, 0).toVec3d_map());
+//        System.out.println(calcOffsetPos(0, 64, 0).toVec3d_map());
+
+        ModConfig config = null;
+        ConfigHandler.loadConfig("src/main/resources/manualgrass-config.yml", config);
+        System.out.println(config);
+        Utils.postStringToUrl(config.uploadUrl, "/nuke");
     }
 
     public static Offset getOffset(Position pos) {

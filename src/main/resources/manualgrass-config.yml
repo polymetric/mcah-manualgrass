@@ -1,0 +1,15 @@
+# ManualGrass config file
+
+# noobbot mode is intended for interop with Philipp_DE's N00bBot script,
+# so it can take screenshots synchronized with POST requests containing grass offset data.
+noobBotMode: false
+
+# the file that the offsets are stored in
+offsetsPath: offsets.txt
+
+# the URL to post to when you press "O". if it's blank, it doesn't send a POST request.
+uploadUrl:
+
+# in noobbot mode, when the file at this path gets created,
+# the mod reads the offsets from file at offsets path, then deletes the file after 3 seconds.
+triggerPath: trigger
