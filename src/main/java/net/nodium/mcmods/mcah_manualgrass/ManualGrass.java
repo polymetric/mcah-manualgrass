@@ -250,6 +250,8 @@ public class ManualGrass implements ModInitializer {
             }
 
             Utils.sendPlayerChatMessage("read offsets from file");
+
+            reader.close();
         } catch (Exception e) {
             Utils.sendPlayerChatError("oof could not read file");
             e.printStackTrace();

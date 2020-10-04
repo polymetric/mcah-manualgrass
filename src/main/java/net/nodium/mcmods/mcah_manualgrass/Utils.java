@@ -88,6 +88,8 @@ public class Utils {
             sb.append(line);
         }
 
+        reader.close();
+
         return sb.toString();
     }
 
