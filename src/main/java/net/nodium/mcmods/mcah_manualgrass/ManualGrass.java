@@ -96,7 +96,7 @@ public class ManualGrass implements ModInitializer {
                 // gets created, then deletes it
                 if (triggerCountdown) {
                     ticksSinceTriggerUpdated++;
-                    if (ticksSinceTriggerUpdated > 20 * 3) {
+                    if (ticksSinceTriggerUpdated > 20 * config.triggerDeleteDelay) {
                         triggerCountdown = false;
                         trigger.delete();
                     }

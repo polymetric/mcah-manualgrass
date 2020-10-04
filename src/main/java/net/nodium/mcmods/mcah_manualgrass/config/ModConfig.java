@@ -5,6 +5,7 @@ public class ModConfig {
     public String offsetsPath;
     public String uploadUrl;
     public String triggerPath;
+    public float triggerDeleteDelay;
 
     public ModConfig() {}
 
@@ -14,10 +15,12 @@ public class ModConfig {
                 "offsetsPath: %s\n" +
                 "uploadUrl: %s\n" +
                 "triggerPath: %s\n",
+                "triggerDeleteDelay: %s\n",
                 noobBotMode,
                 offsetsPath,
                 uploadUrl,
-                triggerPath
+                triggerPath,
+                triggerDeleteDelay
         );
     }
 }
