@@ -60,7 +60,7 @@ public class ManualGrass implements ModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             // key events
             if (toggleDir.wasPressed()) {
-                axis = (axis + 1) % 6;
+                changeAxis();
             }
             if (resetOffsets.wasPressed()) {
                 resetOffsets();
@@ -109,6 +109,31 @@ public class ManualGrass implements ModInitializer {
         config = ConfigHandler.loadConfig(CONFIG_PATH, config);
     }
 
+    private static void changeAxis() {
+        axis = (axis + 1) % 6;
+
+        switch (axis) {
+            case AXIS_POS_X:
+                Utils.sendPlayerChatMessage("+x");
+                break;
+            case AXIS_POS_Y:
+                Utils.sendPlayerChatMessage("+y");
+                break;
+            case AXIS_POS_Z:
+                Utils.sendPlayerChatMessage("+z");
+                break;
+            case AXIS_NEG_X:
+                Utils.sendPlayerChatMessage("-x");
+                break;
+            case AXIS_NEG_Y:
+                Utils.sendPlayerChatMessage("-y");
+                break;
+            case AXIS_NEG_Z:
+                Utils.sendPlayerChatMessage("-z");
+                break;
+        }
+    }
+
     private static Offset getOffset(Position pos) {
         if (offsetMap.get(pos) == null) {
             return new Offset(7, 7, 7);
@@ -143,27 +168,21 @@ public class ManualGrass implements ModInitializer {
         switch (axis) {
             case AXIS_POS_X:
                 offset.x += 1;
-                Utils.sendPlayerChatMessage("+x");
                 break;
             case AXIS_POS_Y:
                 offset.y += 1;
-                Utils.sendPlayerChatMessage("+y");
                 break;
             case AXIS_POS_Z:
                 offset.z += 1;
-                Utils.sendPlayerChatMessage("+z");
                 break;
             case AXIS_NEG_X:
                 offset.x -= 1;
-                Utils.sendPlayerChatMessage("-x");
                 break;
             case AXIS_NEG_Y:
                 offset.y -= 1;
-                Utils.sendPlayerChatMessage("-y");
                 break;
             case AXIS_NEG_Z:
                 offset.z -= 1;
-                Utils.sendPlayerChatMessage("-z");
                 break;
         }
 
