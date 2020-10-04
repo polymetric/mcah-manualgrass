@@ -143,21 +143,27 @@ public class ManualGrass implements ModInitializer {
         switch (axis) {
             case AXIS_POS_X:
                 offset.x += 1;
+                Utils.sendPlayerChatMessage("+x");
                 break;
             case AXIS_POS_Y:
                 offset.y += 1;
+                Utils.sendPlayerChatMessage("+y");
                 break;
             case AXIS_POS_Z:
                 offset.z += 1;
+                Utils.sendPlayerChatMessage("+z");
                 break;
             case AXIS_NEG_X:
                 offset.x -= 1;
+                Utils.sendPlayerChatMessage("-x");
                 break;
             case AXIS_NEG_Y:
                 offset.y -= 1;
+                Utils.sendPlayerChatMessage("-y");
                 break;
             case AXIS_NEG_Z:
                 offset.z -= 1;
+                Utils.sendPlayerChatMessage("-z");
                 break;
         }
 
