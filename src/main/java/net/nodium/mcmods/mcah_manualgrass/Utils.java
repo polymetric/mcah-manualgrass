@@ -125,4 +125,17 @@ public class Utils {
         }
         ManualGrass.mc.inGameHud.getChatHud().addMessage(new TranslatableText(message).formatted(Formatting.RED));
     }
+
+    public static Offset betaOffsetPos(Position pos) {
+        long seed = (long) (pos.x * 0x2fc20f) ^ (long) pos.z * 0x6ebfff5L ^ (long) pos.y;
+        seed = seed * seed * 0x285b825L + seed * 11L;
+
+        Offset off = new Offset(0, 0, 0);
+
+        off.x += seed >> 16 & 15L;
+        off.y += seed >> 20 & 15L;
+        off.z += seed >> 24 & 15L;
+
+        return off;
+    }
 }

@@ -10,7 +10,11 @@ import java.util.Map;
 public class Temp {
     private static HashMap<Position, Offset> offsetMap = new HashMap<>();
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        System.out.println(Utils.betaOffsetPos(new Position(0, 64, 0)));
+    }
+
+    public static void main2(String[] args) throws Exception {
         Position pos1 = new Position(0, 0, 0);
         Position pos2 = new Position(5, 0, 0);
 
@@ -60,15 +64,15 @@ public class Temp {
     }
 
     public static Offset calcOffsetPos(Position pos) {
-        long l1 = (long) (pos.x * 0x2fc20f) ^ (long) pos.y * 0x6ebfff5L ^ (long) pos.z;
-        l1 = l1 * l1 * 0x285b825L + l1 * 11L;
+        long seed = (long) (pos.x * 0x2fc20f) ^ (long) pos.z * 0x6ebfff5L ^ (long) pos.y;
+        seed = seed * seed * 0x285b825L + seed * 11L;
 
-        Offset o = new Offset(0, 0, 0);
+        Offset off = new Offset(0, 0, 0);
 
-        o.x += l1 >> 16 & 15L;
-        o.y += l1 >> 20 & 15L;
-        o.z += l1 >> 24 & 15L;
+        off.x += seed >> 16 & 15L;
+        off.y += seed >> 20 & 15L;
+        off.z += seed >> 24 & 15L;
 
-        return o;
+        return off;
     }
 }

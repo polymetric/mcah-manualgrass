@@ -37,12 +37,14 @@ public class ManualGrass implements ModInitializer {
     private static KeyBinding writeFile;
     private static KeyBinding readFile;
     private static KeyBinding reloadConfig;
+    private static KeyBinding betaModeKey;
     private static HashMap<Position, Offset> offsetMap = new HashMap<>();
 
     public static boolean accessing = false;
 
     private static int ticksSinceTriggerUpdated = 0;
     private static boolean triggerCountdown = false;
+    private static boolean betaMode = false;
 
     @Override
     public void onInitialize() {
@@ -51,6 +53,7 @@ public class ManualGrass implements ModInitializer {
         writeFile = new KeyBinding("key.manualgrass.writeFile", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_O, "category.manualgrass");
         readFile = new KeyBinding("key.manualgrass.readFile", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_I, "category.manualgrass");
         reloadConfig = new KeyBinding("key.manualgrass.reloadConfig", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_P, "category.manualgrass");
+        betaModeKey = new KeyBinding("key.manualgrass.betaModeKey", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_B, "category.manualgrass");
 
         KeyBindingHelper.registerKeyBinding(toggleDir);
         KeyBindingHelper.registerKeyBinding(resetOffsets);
@@ -76,6 +79,10 @@ public class ManualGrass implements ModInitializer {
             }
             if (reloadConfig.wasPressed()) {
                 reloadConfig();
+            }
+            if (betaModeKey.wasPressed()) {
+                betaMode = !betaMode;
+                reloadChunks();
             }
 
             // this code checks every tick for a trigger file. if it exists, it loads the offsets,
@@ -200,12 +207,27 @@ public class ManualGrass implements ModInitializer {
     }
 
     public static Vec3d mcGetOffsetPos(BlockPos pos) {
-        Offset offset = ManualGrass.getOffset(new Position(pos.getX(), pos.getY(), pos.getZ()));
-        return offset.toVec3d();
+        if (betaMode) {
+            Offset offset = Utils.betaOffsetPos(new Position(pos.getX(), pos.getY(), pos.getZ()));
+            return offset.toVec3d();
+        } else {
+            Offset offset = ManualGrass.getOffset(new Position(pos.getX(), pos.getY(), pos.getZ()));
+            return offset.toVec3d();
+        }
     }
 
     public static void reloadChunks() {
-        mc.worldRenderer.reload();
+        Iterator iter = offsetMap.entrySet().iterator();
+
+        while (iter.hasNext()) {
+            Map.Entry item = (Map.Entry) iter.next();
+            Position pos = (Position) item.getKey();
+            reloadBlock(new BlockPos(pos.x, pos.y, pos.z));
+        }
+    }
+
+    public static void reloadBlock(BlockPos pos) {
+        mc.worldRenderer.updateBlock(null, pos, null, null, 8);
     }
 
     private static String getOffsetsAsString() {
@@ -256,9 +278,9 @@ public class ManualGrass implements ModInitializer {
                 ArrayList<String> split = new ArrayList<String>(Arrays.asList(line.split(" ")));
                 split.removeIf(item ->
                         item == null
-                        || item.equals("")
-                        || item.equals(" ")
-                        || item.equals("\n")
+                                || item.equals("")
+                                || item.equals(" ")
+                                || item.equals("\n")
                 );
                 Position pos = new Position(
                         Integer.parseInt(split.get(0)),
