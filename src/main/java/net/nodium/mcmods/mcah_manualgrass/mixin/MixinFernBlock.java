@@ -33,11 +33,9 @@ public abstract class MixinFernBlock extends PlantBlock implements MovableGrass 
             return ActionResult.PASS;
         }
 
-        for (StackTraceElement e : Thread.currentThread().getStackTrace()) {
-            System.out.println(e);
-        }
         ManualGrass.incrementOffset(new Position(pos.getX(), pos.getY(), pos.getZ()));
         ManualGrass.reloadBlock(pos);
+//        ManualGrass.reloadChunks();
 
         return ActionResult.SUCCESS;
     }

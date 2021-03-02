@@ -81,7 +81,13 @@ public class ManualGrass implements ModInitializer {
                 reloadConfig();
             }
             if (betaModeKey.wasPressed()) {
-                betaMode = !betaMode;
+                if (!betaMode) {
+                    betaMode = true;
+                    Utils.sendPlayerChatMessage("beta mode enabled");
+                } else {
+                    betaMode = false;
+                    Utils.sendPlayerChatMessage("beta mode disabled");
+                }
                 reloadChunks();
             }
 
@@ -217,13 +223,7 @@ public class ManualGrass implements ModInitializer {
     }
 
     public static void reloadChunks() {
-        Iterator iter = offsetMap.entrySet().iterator();
-
-        while (iter.hasNext()) {
-            Map.Entry item = (Map.Entry) iter.next();
-            Position pos = (Position) item.getKey();
-            reloadBlock(new BlockPos(pos.x, pos.y, pos.z));
-        }
+        mc.worldRenderer.reload();
     }
 
     public static void reloadBlock(BlockPos pos) {
